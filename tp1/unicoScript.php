@@ -76,6 +76,7 @@ function calcularEdad(&$fecha){
 
 /* BODY */
 
+
 $fecha = "10/04/1995";
 echo "<br/>";
 
