@@ -56,6 +56,7 @@ function calcularEdad(&$fecha){
         $fechaValida = false;
     }
     /* Calcular edad */
+
     
     if($fechaValida == true){
         $anioActual = date('d/m/Y');
