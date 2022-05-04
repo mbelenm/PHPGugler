@@ -56,11 +56,6 @@ function calcularEdad(&$fecha){
         $fechaValida = false;
     }
     /* Calcular edad */
-
-
-    
-
-
     if($fechaValida == true){
         $anioActual = date('d/m/Y');
 
@@ -83,28 +78,29 @@ function calcularEdad(&$fecha){
 
 
 $fecha = "10/04/1995";
-echo "<br/>";
 
 echo calcularEdad($fecha);
 
-
-// verificarFecha($fecha,$valido);
-
-// if ($valido == true){
-//     echo "fecha valida";
-// }else{
-//     echo "fecha invalida";
-// }
-
-// echo "<br/>";
+echo "<br/>";
 
 
-// anioBisiesto($fecha,$bisiesto);
-// if ($bisiesto == true){
-//     echo "la fecha ingresada es un año bisesto";
-// }else{
-//     echo "la fecha ingresada no es un año bisiesto";
-// }
+verificarFecha($fecha,$valido);
+
+if ($valido == true){
+    echo "fecha valida";
+}else{
+    echo "fecha invalida";
+}
+
+echo "<br/>";
+
+
+anioBisiesto($fecha,$bisiesto);
+if ($bisiesto == true){
+    echo "la fecha ingresada es un año bisesto";
+}else{
+    echo "la fecha ingresada no es un año bisiesto";
+}
 
 
 
