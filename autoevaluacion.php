@@ -1,8 +1,19 @@
-<!
+<?php
 
-$i = 5;
-for ($i = 1; $i <= 5; $i++) {
-echo $i." ";
-}
+$personas = array(
+    array(
+        'fechaNacimiento' => '10/04/1996',
+    ),
+    array(
+        'fechaNacimiento' => '18/07/1990',
+    ),
+    array(
+        'fechaNacimiento' => '10/04/1999',
+    ),
+    
+);
 
-¡>
+
+
+
+?>
