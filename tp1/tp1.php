@@ -10,7 +10,7 @@ $personas = array(
         'nombre' => 'Fernando',
         'tipo_documento' => 'dni',
         'numero_documento' => 42601837,
-        'fecha_nacimiento' => '13/07/2000'
+        'fecha_nacimiento' => '13/77/2000'
     ),
     array(
         'apellido' => 'Febre ', 
@@ -106,11 +106,11 @@ function verificarFecha($fecha){
     $mes = $arregloDMA[1];
     $anio = $arregloDMA[2];
 
-    if ((($dia >= 01) && ($dia <= 29) && ($dia != 00)) && ($mes == 02)){
+    if ((($dia >= 01) && ($dia <= 29) && ($dia != 00)) && ($mes == 02) && (($anio <= date("Y")&&($anio <= 110)))){
         
         return true;
 
-    }elseif ((($dia >= 01) && ($dia <= 31) && ($dia != 00)) && (($mes >= 01) && ($mes <=12))){
+    }elseif ((($dia >= 01) && ($dia <= 31) && ($dia != 00)) && (($mes >= 01) && ($mes <=12))&&(($anio <= date("Y")&&($anio <= 110)))){
 
         return true;
 
@@ -137,22 +137,11 @@ function calcularEdad($fecha){
 
     if (verificarFecha($fecha) == true){
         
-        if($anioActual > $anioNacimiento){
-            $fechaValor = true;
-        }else{
-            $fechaValor = false;
-        }
-        /* Calcular edad */
-        if($fechaValor == true){
-            $edad = ($anioActual - $anioNacimiento);
-            return $edad;
-            // echo $edad.'<br />';
-        }else{
-            $guiones = "--";
-        }
+        $edad = ($anioActual - $anioNacimiento);
+        return $edad;
 
     }else{
-        echo "(Fecha no valida)";
+        return false;
     }
 }
 
@@ -164,20 +153,25 @@ function procesarInfo ($personas){
         $fechaNacimientoRegistro = $dato['fecha_nacimiento'];
         $tipo = $dato['tipo_documento'];
         $documento = $dato['numero_documento'];
-        
+
+        /* Nombre sin espacios en blanco y todo en minuscula excepto la primera letra */
         $apellido = strtolower($apellido);
         $apellido = trim($apellido);
         $apellido = ucwords($apellido);
 
+        /* Apellido sin espacios en blanco y todo en minuscula excepto la primera letra */        
         $nombre = strtolower($nombre);
         $nombre = trim($nombre);
         $nombre = ucwords($nombre);
-
-        $edadPersona = calcularEdad($fechaNacimientoRegistro);
-
+        
+        /* Tipo de documento en mayusculas */
         $tipoDocumento = strtoupper($tipo);
 
-        echo "$apellido, $nombre de $edadPersona años de edad y documento ($tipoDocumento) [$documento] nacido en la fecha $fechaNacimientoRegistro. <br />";
+        if (calcularEdad($fechaNacimientoRegistro) == false) {
+            echo "$apellido, $nombre de $edadPersona años de edad y documento ($tipoDocumento) [$documento] nacido en la fecha $fechaNacimientoRegistro. <br />"
+        }
+
+        // echo "$apellido, $nombre de $edadPersona años de edad y documento ($tipoDocumento) [$documento] nacido en la fecha $fechaNacimientoRegistro. <br />";
     }
 }
 
