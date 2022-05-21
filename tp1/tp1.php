@@ -1,5 +1,5 @@
 <?php
-/* esta linea me muestra los errores en la pantalla */
+
 ini_set("display_errors", "on");
 
 /* vector de personas con registros*/
@@ -79,7 +79,6 @@ $personas = array(
 );
 
 /* Función para validar si un año es bisiesto. */
-
 function anioBisiesto($fecha){
     /* Convierto la fecha en variables con las que pueda trabajar */
     $separador = "/";
@@ -99,36 +98,31 @@ function anioBisiesto($fecha){
 }
 
 /* Función para validar si una fecha es correcta. */
-
 function verificarFecha($fecha){
-    $arregloDMA = explode("/",$fecha);
-    $dia = $arregloDMA[0];
-    $mes = $arregloDMA[1];
-    $anio = $arregloDMA[2];
+    $fecha = explode("/",$fecha);
+    $dia = $fecha[0];
+    $mes = $fecha[1];
+    $anio = $fecha[2];
 
-    if ((($dia >= 01) && ($dia <= 29) && ($dia != 00)) && ($mes == 02) && (($anio <= date("Y")&&($anio <= 110)))){
-        
-        return true;
+    $anioActual = date("Y");
 
-    }elseif ((($dia >= 01) && ($dia <= 31) && ($dia != 00)) && (($mes >= 01) && ($mes <=12))&&(($anio <= date("Y")&&($anio <= 110)))){
-
-        return true;
-
-    }else{
-
-        return false;
-
+    if ( (($dia >= 1)&&($dia <= 29)) && ($mes == 2) && (($anio <= $anioActual)&&($anio != 0))  ) {
+        $verificado = true;
+        return $verificado;
+    }elseif ( (($dia >= 1)&&($dia <= 31)) && (($mes >= 1)&&($mes <= 12)) && (($anio <= $anioActual)&&($anio != 0)) ) {
+        $verificado = true;
+        return $verificado;
+    }else{ 
+        $verificado = false;
+        return $verificado;
     }
+    
 }
 
 /* Función para calcular edad de la persona */
-
 function calcularEdad($fecha){
     
-    $fechaActual = date('d/m/Y');
-    $fechaActual = explode("/",$fechaActual);
-    
-    $anioActual = $fechaActual[2];
+    $anioActual = date("Y");
     
     $fechaNacimiento = $fecha;
     $fechaNacimiento = explode("/",$fecha);
@@ -145,7 +139,7 @@ function calcularEdad($fecha){
     }
 }
 
-
+/* Función para procesar la informacion personal de un usuario */
 function procesarInfo ($personas){
     foreach ($personas as $dato){
         $apellido = $dato['apellido'];
@@ -167,20 +161,27 @@ function procesarInfo ($personas){
         /* Tipo de documento en mayusculas */
         $tipoDocumento = strtoupper($tipo);
 
-        if (calcularEdad($fechaNacimientoRegistro) == false) {
-            echo "$apellido, $nombre de $edadPersona años de edad y documento ($tipoDocumento) [$documento] nacido en la fecha $fechaNacimientoRegistro. <br />"
+        
+        if (verificarFecha($fechaNacimientoRegistro) == true) {
+            
+            $edadPersona = calcularEdad($fechaNacimientoRegistro);
+            echo "$apellido, $nombre de $edadPersona años de edad y documento ($tipoDocumento) [$documento] nacido en la fecha $fechaNacimientoRegistro. <br />";
+
+        }else{
+
+            echo "$apellido, $nombre de -- años de edad y documento ($tipoDocumento) [$documento] nacido en la fecha (Fecha no valida). <br />";
+
         }
 
-        // echo "$apellido, $nombre de $edadPersona años de edad y documento ($tipoDocumento) [$documento] nacido en la fecha $fechaNacimientoRegistro. <br />";
     }
 }
 
 
 /* BODY */
 
-
 procesarInfo($personas);
 
 
 
 ?>
+
