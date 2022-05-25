@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="proc_form.php" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="soyUnValorOculto"><br>
+        Password: <input type="password" name="password" id=""><br>
+        Nombre: <input type="text" name="nombre" id=""><br>
+        Apellido: <input type="text" name="apellido" id=""><br>
+        Seleccione color: <br>
+            Rojo <input type="checkbox" name="colores[]" value="rojo" id=""><br>
+            Verde <input type="checkbox" name="colores[]" value="verde" id=""><br>
+            Azul <input type="checkbox" name="colores[]" value="azul"><br>
+        Seleccione departamento: <br>
+        <select name="departamentos" id="">
+            <option value="">Seleccione su departamento</option>
+            <option value="parana">Parana</option>
+            <option value="federacion">Federacion</option>
+            <option value="uruguay">uruguay</option>
+            <option value="concordia">Concordia</option>
+        </select><br>
+
+        <input type="file" name="imagen" id=""><br>
+
+        <input type="submit" value="enviar" name="bt_enviar">
+
+
+
+    </form>
+
+
+
+
+
+</body>
+</html>
