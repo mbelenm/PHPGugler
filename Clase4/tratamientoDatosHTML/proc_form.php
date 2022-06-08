@@ -33,7 +33,7 @@ if (isset($_POST["bt_enviar"])) {
 
 
     /* Estructura de mi computadora que no es un lugar temproral */
-    $upload_dir= "/opt/lampp/htdocs/PHPGugler/Clase4/practicaDeLaClase/imagen/";
+    $upload_dir= "/opt/lampp/htdocs/PHPGugler/Clase4/tratamientoDatosHTML/imagen/";
     /* Comprobar que se haya subido un archivo */
     if (is_uploaded_file($_FILES["imagen"]["tmp_name"])) {  
 

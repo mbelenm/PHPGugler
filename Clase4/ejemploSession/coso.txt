@@ -1,0 +1,1 @@
+una sesion es una cookie que se le almacena al cliente con un valor, este valor es el que representa al sessionID en el servidor
