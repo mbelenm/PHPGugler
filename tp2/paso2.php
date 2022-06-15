@@ -1,20 +1,18 @@
 <?php
 ini_set("display_errors", "on");
 session_start();
-
-$_SESSION["nombreUsuario"] = $_POST["nombreUsuario"];
-$_SESSION["password"] = $_POST["password"];
-$_SESSION["apellido"] = $_POST["apellido"];
-$_SESSION["nombre"] = $_POST["nombre"];
-$_SESSION["tipoDocumento"] = $_POST["tipoDocumento"];
-$_SESSION["numeroDocumento"] = $_POST["numeroDocumento"];
-$_SESSION["sexo"] = $_POST["sexo"];
-$_SESSION["nacionalidad"] = $_POST["nacionalidad"];
-
-
-
+if(isset($_POST['bt_siguiente_1'])){
+    $_SESSION["nombreUsuario"] = $_POST["nombreUsuario"];
+    $_SESSION["password"] = $_POST["password"];
+    $_SESSION["apellido"] = $_POST["apellido"];
+    $_SESSION["nombre"] = $_POST["nombre"];
+    $_SESSION["tipoDocumento"] = $_POST["tipoDocumento"];
+    $_SESSION["numeroDocumento"] = $_POST["numeroDocumento"];
+    $_SESSION["sexo"] = $_POST["sexo"];
+    $_SESSION["nacionalidad"] = $_POST["nacionalidad"];
+}
+    
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,9 +24,9 @@ $_SESSION["nacionalidad"] = $_POST["nacionalidad"];
 </head>
 <body>
     <?php include_once("/opt/lampp/htdocs/PHPGugler/tp2/includes/php/cabecera.php"); ?>  
-    
     <div>
-        <h2>Informacion de Contacto:</h2>
+        <fieldset>
+            <legend>Informacion de Contacto</legend>
             <form action="paso3.php" method="post" enctype="multipart/form-data">
                 Correo Electronico: <input type="email" name="email" id="email"><br>
                 Telefono: <input type="tel" name="telefono" id="telefono"><br>
@@ -36,24 +34,17 @@ $_SESSION["nacionalidad"] = $_POST["nacionalidad"];
                 Domicilio: <input type="text" name="domicilio" id="domicilio"><br>
                 Provincia: 
                 <select name="provincia" id="provincia">
-                    <option value="entreRios">Entre Rios</option>
-                    <option value="santaFe">Santa Fe</option>
-                    <option value="corrientes">Corrientes</option>
-                    <option value="buenosAires">Buenos Aires</option>
+                    <option value="Entre Rios">Entre Rios</option>
+                    <option value="Santa Fe">Santa Fe</option>
+                    <option value="Corrientes">Corrientes</option>
+                    <option value="Buenos Aires">Buenos Aires</option>
                 </select><br>
                 Localidad: <input type="text" name="localidad" id="localidad"><br>
-                
                 <button type="button" onclick="location.href='paso1.php'">anterior</button>
-
-                <input type="submit" value="siguiente" name="bt_siguiente">
-
-
+                <input type="submit" value="siguiente" name="bt_siguiente_2">
             </form>
+        </fieldset>
     </div>
     <?php include_once("/opt/lampp/htdocs/PHPGugler/tp2/includes/php/pie.php"); ?>
-
-
-
-
 </body>
 </html>

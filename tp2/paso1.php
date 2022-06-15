@@ -1,7 +1,6 @@
 <?php
-ini_set("display_errors", "on");
+// ini_set("display_errors", "on");
 session_start();
-
 ?>
 
 <!DOCTYPE html>
@@ -13,11 +12,10 @@ session_start();
     <title>SGU</title>
 </head>
 <body> 
-
     <?php include_once("/opt/lampp/htdocs/PHPGugler/tp2/includes/php/cabecera.php"); ?>
-
     <div>
-        <h2>Informacion Personal:</h2>
+        <fieldset>
+            <legend>Informacion Personal</legend>
             <form action="paso2.php" method="post" enctype="multipart/form-data">
                 Nombre de Usuario: <input type="text" name="nombreUsuario" id="nombreUsuario"><br>
                 Contraseña: <input type="password" name="password" id="password"><br>
@@ -38,12 +36,11 @@ session_start();
                 <input type="radio" name="sexo" value="femenino" id="femenino"><br>
 
                 Nacionalidad: <input type="text" name="nacionalidad" id="nacionalidad"><br>
-                <input type="submit" value="siguiente" name="bt_siguiente">
+                <input type="submit" value="siguiente" name="bt_siguiente_1">
             </form>
+        </fieldset>
     </div>
-
     <?php include_once("/opt/lampp/htdocs/PHPGugler/tp2/includes/php/pie.php"); ?>
-   
 </body>
 </html>
 

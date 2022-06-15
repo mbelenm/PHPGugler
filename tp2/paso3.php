@@ -1,25 +1,16 @@
 <?php
 ini_set("display_errors", "on");
 session_start();
-
-$_SESSION["email"] = $_POST["email"];
-$_SESSION["telefono"] = $_POST["telefono"];
-$_SESSION["celular"] = $_POST["celular"];
-$_SESSION["domicilio"] = $_POST["domicilio"];
-$_SESSION["provincia"] = $_POST["provincia"];
-$_SESSION["localidad"] = $_POST["localidad"];
-
-// echo $_SESSION["email"];
-// echo $_SESSION["telefono"];
-// echo $_SESSION["celular"];
-// echo $_SESSION["domicilio"];
-// echo $_SESSION["provincia"];
-// echo $_SESSION["localidad"];
-
+if(isset($_POST['bt_siguiente_2'])){
+    $_SESSION["email"] = $_POST["email"];
+    $_SESSION["celular"] = $_POST["celular"];
+    $_SESSION["domicilio"] = $_POST["domicilio"];
+    $_SESSION["provincia"] = $_POST["provincia"];
+    $_SESSION["localidad"] = $_POST["localidad"];
+    $_SESSION["telefono"] = $_POST["telefono"];
+}
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,23 +22,34 @@ $_SESSION["localidad"] = $_POST["localidad"];
 </head>
 <body>
     <?php include_once("/opt/lampp/htdocs/PHPGugler/tp2/includes/php/cabecera.php"); ?>  
-
     <div>
-        <h2>Informacion de Alta de Usuario</h2>
+        <fieldset>
+            <legend>Informacion Personal</legend>
+            Nombre de Usuario: <?php echo $_SESSION["nombreUsuario"] ?><br>
+            Apellido: <?php echo $_SESSION["apellido"] ?><br>
+            Nombre: <?php echo $_SESSION["nombre"] ?><br>
+            Tipo de Documento: <?php echo $_SESSION["tipoDocumento"] ?><br>
+            Numero de Documento: <?php echo $_SESSION["numeroDocumento"] ?><br>
+            Genero: <?php echo $_SESSION["sexo"] ?><br>
+            Nacionalidad: <?php echo $_SESSION["nacionalidad"] ?><br>
 
-
-
-
-        
+        </fieldset><br>       
     </div>
-
-
-
-
-
-
+    <div>
+        <fieldset>
+            <legend>Informacion de Contacto</legend>
+            Correo Electronico: <?php echo $_SESSION["email"] ?><br>
+            Celular: <?php echo $_SESSION["celular"] ?><br>
+            Telefono: <?php echo $_SESSION["telefono"] ?><br>
+            Domicilio: <?php echo $_SESSION["domicilio"] ?><br>
+            Provicia: <?php echo $_SESSION["provincia"] ?><br>
+            Localidad: <?php echo $_SESSION["localidad"] ?><br>
+        </fieldset><br>
+    </div>
+    <div>
+        <button type="button" onclick="location.href='paso2.php'">anterior</button>
+        <button type="button" onclick="location.href='finalizar.php'">guardar</button>
+    </div>
     <?php include_once("/opt/lampp/htdocs/PHPGugler/tp2/includes/php/pie.php"); ?>
-
-
 </body>
 </html>
