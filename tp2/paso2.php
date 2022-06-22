@@ -23,7 +23,7 @@ if(isset($_POST['bt_siguiente_1'])){
     <title>SGU</title>
 </head>
 <body>
-    <?php include_once("/opt/lampp/htdocs/PHPGugler/tp2/includes/php/cabecera.php"); ?>  
+    <?php include_once("includes/php/cabecera.php"); ?>  
     <div>
         <fieldset>
             <legend>Informacion de Contacto</legend>
@@ -45,6 +45,6 @@ if(isset($_POST['bt_siguiente_1'])){
             </form>
         </fieldset>
     </div>
-    <?php include_once("/opt/lampp/htdocs/PHPGugler/tp2/includes/php/pie.php"); ?>
+    <?php include_once("includes/php/pie.php"); ?>
 </body>
 </html>

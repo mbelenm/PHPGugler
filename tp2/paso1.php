@@ -12,7 +12,7 @@ session_start();
     <title>SGU</title>
 </head>
 <body> 
-    <?php include_once("/opt/lampp/htdocs/PHPGugler/tp2/includes/php/cabecera.php"); ?>
+    <?php include_once("includes/php/cabecera.php"); ?>
     <div>
         <fieldset>
             <legend>Informacion Personal</legend>
@@ -40,7 +40,7 @@ session_start();
             </form>
         </fieldset>
     </div>
-    <?php include_once("/opt/lampp/htdocs/PHPGugler/tp2/includes/php/pie.php"); ?>
+    <?php include_once("includes/php/pie.php"); ?>
 </body>
 </html>
 
