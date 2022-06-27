@@ -3,7 +3,7 @@
 class CabeceraPagina{
     private $_titulo;
     private $_alineacionTitulo;
-    private $_cabeceraPagina = '' ;
+    private $_cabeceraPagina = "" ;
 
     public function __construct($titulo, $alineacionTitulo)
     {
@@ -18,6 +18,7 @@ class CabeceraPagina{
     
     public function mostrarCabecera(){
         $this->_armarCabeceraPagina();
+        return $this->_cabeceraPagina;
     }
 
 }
