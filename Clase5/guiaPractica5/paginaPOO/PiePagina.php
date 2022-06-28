@@ -30,6 +30,11 @@ class PiePagina
         $this->_armarPiePagina();
         return $this->_piePagina;
     }
+
+    public function __toString()
+    {
+        $this->_autor."/".$this->_webAutor."/".$this->_emailAutor;
+    }
 }
 
 ?>

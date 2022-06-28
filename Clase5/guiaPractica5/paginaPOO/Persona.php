@@ -10,6 +10,7 @@ class Persona{
     private $_telefonoTrabajo;
     private $_telefonoMovil;
     private $_correoElectronico;
+    private $_hermanos = array();
 
     public function cambiarDomicilio($domicilio){
         $this->_domicilio= $domicilio;
@@ -31,7 +32,16 @@ class Persona{
         $this->_correoElectronico= $correoElectronico;
     }
 
+    public function agregarHermano(Persona $oHermano)
+    {
+        $this->_hermanos[] = $oHermano;
+    }
     
+    public function __toString()
+    {
+        return $this->_apellidos.",".$this->_nombres;
+    }
+
 }
 
 $oPersona = new Persona();
@@ -40,4 +50,7 @@ $oPersona->cambiarNumeroTelefono('3442587473');
 $oPersona->cambiarNumeroTelefonoMovil('3442587473');
 $oPersona->cambiarNumeroTelefonoTrabajo('3442587473');
 $oPersona->cambiarCorreoElectronico('maycolsantia@gmail.com');
+
+$oHermanoPersona = new Persona();
+$oPersona->agregarHermano($oHermanoPersona);
 ?>
