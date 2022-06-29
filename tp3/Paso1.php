@@ -1,4 +1,5 @@
 <?php 
+ini_set("display_errors", "on");
 
 session_start();
 
@@ -24,13 +25,13 @@ $informacionPersonal = $_SESSION['informacion_personal'];
 <head>
 	<meta charset="ISO-8859-1">
 	<title>SGU | Formulario de Inscripc&oacute;n</title>
-	<link type="text/css" rel="stylesheet" href="/tp3/includes/css/estilos.css">
+	<link type="text/css" rel="stylesheet" href="includes/css/estilos.css">
 </head>
 <body>
 
 <div class="wraper">
 
-	<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/tp3/includes/php/header.php'; ?>
+	<?php require_once ('includes/php/header.php'); ?>
 	
 	<form action="Paso2.php" method="post">
 		<fieldset>
@@ -81,6 +82,6 @@ $informacionPersonal = $_SESSION['informacion_personal'];
 	
 </div>
 
-<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/tp3/includes/php/footer.php'; ?>
+<?php require_once ('includes/php/footer.php'); ?>
 </body>
 </html>
