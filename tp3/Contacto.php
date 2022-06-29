@@ -1,5 +1,5 @@
 <?php
-
+ini_set("display_errors", "on");
 class Contacto
 {
     CONST TIPO_TELEFONO = 1;
@@ -31,7 +31,7 @@ class Contacto
         }else{
             if($tipo == self::TIPO_TELEFONO){
                 //Validar que contenga al menos 10 dígitos y separado por guiones
-                if(!preg_match("/^[0-9]{10}$/", $valor)){
+                if(!preg_match("/^[0-9-]{10}$/", $valor)){
                     return false;
                 }else{
                     return true;
@@ -55,11 +55,18 @@ class Contacto
     }
 }
 
-// $oContacto = new Contacto(1, "1234567890");
+// $oContacto1 = new Contacto(2, "maycolsantia@gmail.com");
+// $oContacto2 = new Contacto(1, "3442587475");
 
-// echo $oContacto->verConstante();
+// // echo $oContacto1->verConstanteEmail();
+// // echo $oContacto2->verConstanteTelefono();
 
-// echo $oContacto->validar(1, "18234567890");
+// echo $oContacto1->validar(2,"maycolsan@tiagmail.com");
 
 
 ?>
+
+
+
+
+<!--LA DIFERENCIA DE USO entre el constructor y los Setters es que La idea de los setters es poder modificar el estado interno de tu objeto, una vez que ya ha sido construido   -->

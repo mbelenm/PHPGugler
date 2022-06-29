@@ -1,5 +1,5 @@
 <?php
-
+ini_set("display_errors", "on");
 class Usuario
 {
     private $_nombre;
@@ -14,22 +14,10 @@ class Usuario
     //Metodo para validar contraseña con al menos 6 caracteres y un numero y una letra
     public function validarContrasenia($contrasenia)
     {
-        if (strlen($contrasenia) < 6) {
+        if(!preg_match("/^[a-zA-ZñÑ0-9]{6,25}$/",$contrasenia)){
             return false;
-        } else {
-            if (!preg_match("/[0-9]/", $contrasenia)) {
-                return false;
-            } else {
-                if (!preg_match("/[a-z]/", $contrasenia)) {
-                    return false;
-                } else {
-                    if (!preg_match("/[A-Z]/", $contrasenia)) {
-                        return false;
-                    } else {
-                        return true;
-                    }
-                }
-            }
+        }else{
+            return true;
         }
     }
 
@@ -51,6 +39,15 @@ class Usuario
         return $this->_contrasenia;
     }
 }
+
+// $oUsuario1 = new Usuario("maycol22","Espectriñ222o9");
+// $pass = $oUsuario1->getContrasenia();
+// echo $pass;
+// echo $oUsuario1->validarContrasenia($pass);
+// echo $pass;
+// echo $oUsuario1->getContraseniaEnmascarada($pass);
+// echo $pass;
+
 
 
 
