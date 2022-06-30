@@ -1,7 +1,13 @@
 <?php 
 ini_set("display_errors", "on");
 
+
 session_start();
+
+$_SERVER["DOCUMENT_ROOT"]=dirname(__DIR__);
+/* Llamo a la clase tipoDocumento.php */
+include_once 'TipoDocumento.php';
+
 
 $informacionPersonal = null;
 
@@ -17,7 +23,14 @@ if ( isset($_SESSION['informacion_personal']) == false )
 	$_SESSION['informacion_personal']['nacionalidad'] = '';
 }
 
-$informacionPersonal = $_SESSION['informacion_personal'];
+
+
+// $tipoDocumento = $_SESSION['informacion_personal']['tipo_documento'];
+// $descripcionDocumento = array('DNI','LC','LE');
+
+// $oTipoDocumento = new TipoDocumento($tipoDocumento,$descripcionDocumento);
+
+// var_dump($oTipoDocumento);
 
 ?>
 <!DOCTYPE html>
@@ -31,7 +44,7 @@ $informacionPersonal = $_SESSION['informacion_personal'];
 
 <div class="wraper">
 
-	<?php require_once ('includes/php/header.php'); ?>
+	<?php require_once $_SERVER["DOCUMENT_ROOT"].'/tp3/includes/php/header.php'; ?>
 	
 	<form action="Paso2.php" method="post">
 		<fieldset>
@@ -53,7 +66,7 @@ $informacionPersonal = $_SESSION['informacion_personal'];
 				<li><label>Tipo de Documento:</label></li>
 				<li>
 					<select name="tipo_documento">
-						<option value="DNI" <?php echo ( $informacionPersonal['tipo_documento'] == 'DNI' ) ? 'selected="selected"' : '' ; ?>>DNI</option>
+						<option value="DNI" <?php echo ( $informacionPersonal['tipo_documento'] == 'DNI' ) ? 'selected="selected"' : '' ; ?>> DNI</option>
 						<option value="LC" <?php echo ( $informacionPersonal['tipo_documento'] == 'LC' ) ? 'selected="selected"' : '' ; ?>>LC</option>
 						<option value="LE" <?php echo ( $informacionPersonal['tipo_documento'] == 'LE' ) ? 'selected="selected"' : '' ; ?>>LE</option>
 					</select>
@@ -82,6 +95,8 @@ $informacionPersonal = $_SESSION['informacion_personal'];
 	
 </div>
 
-<?php require_once ('includes/php/footer.php'); ?>
+	<?php require_once $_SERVER["DOCUMENT_ROOT"].'/tp3/includes/php/footer.php'; ?>
 </body>
 </html>
+
+<!-- /* /opt/lampp/htdocs/PHPGugler */ -->
