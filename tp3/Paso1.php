@@ -35,15 +35,19 @@ if(isset($_POST['bt_paso1'])){
 // $tipoDocumento = $_SESSION['informacion_personal']['tipo_documento'];
 // $descripcionDocumento = array('DNI','LC','LE');
 
-// $oTipoDocumento = new TipoDocumento($tipoDocumento,$descripcionDocumento);
+// // $oTipoDocumento = new TipoDocumento($tipoDocumento,$descripcionDocumento);
+// $oPersona = new Persona();
 
-// var_dump($oTipoDocumento);
 
-//crear array con 3 objetos tipoDocumento
-$aTipoDocumento = array();
-$aTipoDocumento[] = new TipoDocumento(1,'DNI');
-$aTipoDocumento[] = new TipoDocumento(2,'LC');
-$aTipoDocumento[] = new TipoDocumento(3,'LE');
+// //Setear nombre de usuario en la persona
+// $oPersona->setTipoDocumento($_SESSION['informacion_personal']['tipo_documento']);
+// echo $oPersona->getTipoDocumento() . '<br>';
+
+// // array con 3 objetos tipoDocumento
+// $aTipoDocumento = array();
+// $aTipoDocumento[] = new TipoDocumento(1,'DNI');
+// $aTipoDocumento[] = new TipoDocumento(2,'LC');
+// $aTipoDocumento[] = new TipoDocumento(3,'LE');
 
 
 // foreach ($aTipoDocumento as $oTipoDocumento)
@@ -69,11 +73,7 @@ $aSexo[] = new Sexo('F','Femenino');
 //Crear objeto Persona
 // $oPersona = new Persona($_SESSION['informacion_personal']['nombre_usuario'],$_SESSION['informacion_personal']['contrasenia'],$_SESSION['informacion_personal']['apellido'],$_SESSION['informacion_personal']['nombre'],$_SESSION['informacion_personal']['tipo_documento'],$_SESSION['informacion_personal']['numero_documento'],$_SESSION['informacion_personal']['sexo'],$_SESSION['informacion_personal']['nacionalidad']);
 
-$oPersona = new Persona();
 
-//Setear nombre de usuario en la persona
-$oPersona->setTipoDocumento($_SESSION['informacion_personal']['tipo_documento']);
-echo $oPersona->getTipoDocumento() . '<br>';
 
 // $oPersona->setUsuario($_SESSION[Usuario][]='maycol22',$_SESSION['informacion_personal']['contrasenia']='Espectriñ222o9');
 // echo $oPersona->getUsuario() . '<br>';
@@ -116,6 +116,12 @@ echo $oPersona->getTipoDocumento() . '<br>';
 				<li><label>Tipo de Documento:</label></li>
 				<li>
 					<select name="tipo_documento">
+						$_SESSION[$objeto_TipoDni]-> getDescripcion
+						
+						$_SESSION[$objeto_TipoLC]-> getDescripcion
+						$_SESSION[$objeto_TipoLE]-> getDescripcion
+						$_SESSION[$ObjetoTipo[dni]] -> getDescripcion
+
 						<option value="DNI" <?php echo ($aTipoDocumento[0]) ? 'selected="selected"' : '' ; ?>> DNI</option>
 						<option value="LC" <?php echo ( $aTipoDocumento[1] ) ? 'selected="selected"' : '' ; ?>>LC</option>
 						<option value="LE" <?php echo ( $aTipoDocumento[2] ) ? 'selected="selected"' : '' ; ?>>LE</option>
