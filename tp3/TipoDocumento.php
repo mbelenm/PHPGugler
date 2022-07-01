@@ -2,8 +2,8 @@
 
 class TipoDocumento
 {
-    private $_idTipoDocumento;
-    private $_descripcion;
+    private $_idTipoDocumento;/// 1 2 3 
+    private $_descripcion;/// dni lc le
 
     public function __construct($idTipoDocumento, $descripcion)
     {
@@ -31,7 +31,13 @@ class TipoDocumento
         $this->_descripcion = $descripcion;
     }
 
-
+    public function arrayTipoDocumento(){
+        $aTipoDocumento = array();
+        $aTipoDocumento[] = new TipoDocumento(1,'DNI');
+        $aTipoDocumento[] = new TipoDocumento(2,'LC');
+        $aTipoDocumento[] = new TipoDocumento(3,'LE');
+        return $aTipoDocumento;
+    }
     //Metodo toString
     public function __toString()
     {
