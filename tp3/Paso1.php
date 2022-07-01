@@ -25,6 +25,9 @@ $persona = new Persona();
 
 
 if(isset($_POST['bt_paso1'])){
+	$persona['apellido'] = $_POST['apellido'];
+	$persona['nombre'] = $_POST['nombre'];
+	$persona['numero_documento'] = $_POST['numero_documento'];
     $_SESSION["nombreUsuario"] = $_POST["nombreUsuario"];
     $_SESSION["password"] = $_POST["password"];
     $_SESSION["apellido"] = $_POST["apellido"];
@@ -34,7 +37,6 @@ if(isset($_POST['bt_paso1'])){
     $_SESSION["sexo"] = $_POST["sexo"];
     $_SESSION["nacionalidad"] = $_POST["nacionalidad"];
 }
-
 
 
 
@@ -101,16 +103,16 @@ $aSexo[] = new Sexo('F','Femenino');
 			
 			<ul>
 				<li><label>Nombre de Usuario:</label></li>
-				<li><input type="text" name="nombre_usuario" value="<?php echo $_SESSION['persona']['nombreUsuario']  ?>"></li>
+				<li><input type="text" name="nombre_usuario" value="<?php echo $informacionPersonal ['nombreUsuario']  ?>"></li>
 				
 				<li><label>Contrase&ntilde;a:</label></li>
-				<li><input type="password" name="contrasenia" value="<?php echo $_SESSION['persona']['contrasenia']; ?>"></li>
+				<li><input type="password" name="contrasenia" value="<?php echo $persona ['contrasenia']; ?>"></li>
 				
 				<li><label>Apellido:</label></li>
-				<li><input type="text" name="apellido" value="<?php echo $_SESSION['persona']['apellido']; ?>"></li>
+				<li><input type="text" name="apellido" value="<?php echo $persona ['apellido']; ?>"></li>
 				
 				<li><label>Nombre:</label></li>
-				<li><input type="text" name="nombre" value="<?php echo $_SESSION['persona']['nombre']; ?>"></li>
+				<li><input type="text" name="nombre" value="<?php echo $persona ['nombre']; ?>"></li>
 				
 				<li><label>Tipo de Documento:</label></li>
 				<li>
@@ -137,7 +139,7 @@ $aSexo[] = new Sexo('F','Femenino');
 			</ul>
 			
 			<div class="buttons">
-				<input type="submit" name="bt_paso1" value="Siguiente">
+				<input type="submit" name="bt_paso1" value="Siguiente"> 
 			</div>
 		</fieldset>
 	</form>

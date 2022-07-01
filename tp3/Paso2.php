@@ -7,9 +7,9 @@ $informacionContacto = null;
 
 if ( isset($_POST['bt_paso1']) == true )
 {
-	$_SESSION['informacion_personal']['nombre_usuario'] = ( isset($_POST['nombre_usuario']) == true ) ? $_POST['nombre_usuario'] : '';
-	$_SESSION['informacion_personal']['contrasenia'] = ( isset($_POST['contrasenia']) == true ) ? $_POST['contrasenia'] : '';
-	$_SESSION['informacion_personal']['apellido'] = ( isset($_POST['apellido']) == true ) ? $_POST['apellido'] : '';
+	$_SESSION['persona']['nombre_usuario'] = ( isset($_POST['nombreUsuario']) == true ) ? $_POST['nombre_usuario'] : '';
+	$_SESSION['persona']['contrasenia'] = ( isset($_POST['contrasenia']) == true ) ? $_POST['contrasenia'] : '';
+	$_SESSION['persona']['apellido'] = ( isset($_POST['apellido']) == true ) ? $_POST['apellido'] : '';
 	$_SESSION['informacion_personal']['nombre'] = ( isset($_POST['nombre']) == true ) ? $_POST['nombre'] : '';
 	$_SESSION['informacion_personal']['tipo_documento'] = ( isset($_POST['tipo_documento']) == true ) ? $_POST['tipo_documento'] : '';
 	$_SESSION['informacion_personal']['numero_documento'] = ( isset($_POST['numero_documento']) == true ) ? $_POST['numero_documento'] : '';
@@ -75,7 +75,7 @@ $informacionContacto = $_SESSION['informacion_contacto'];
 			</ul>
 			
 			<div class="buttons">
-				<input type="submit" name="bt_paso2" value="Siguiente">
+				<input type="submit" name="bt_paso2" value="Siguiente"> 
 				<input type="button" value="Anterior" onclick="document.location='Paso1.php'">
 			</div>
 		</fieldset>
