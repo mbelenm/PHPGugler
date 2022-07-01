@@ -6,6 +6,25 @@ $_SERVER["DOCUMENT_ROOT"]=dirname(__DIR__);
 
 include_once 'Persona.php';
 
+	//cargar los datos en el objeto  persona si no estan cargados
+	if(!isset($_SESSION['persona'])){
+		$persona= $_SESSION['persona']=new Persona();`
+		$persona->setApellido(' ');
+		$persona->setNombre(' ');
+		$persona->setNumeroDocumento(0);
+		$persona->setTipoDocumento(new TipoDocumento('',' '));
+		$persona->setSexo(new Sexo('',' '));
+		$persona->setUsuario(new Usuario('',' '));
+		$persona->setNacionalidad(' ');
+		$persona->setEmail(new Contacto('',' '));
+		$persona->setTelefono(new Contacto('',' '));
+		$persona->setCelular(new Contacto('',' '));
+		$persona->setDomicilio(' ');
+	}
+
+
+
+
 $informacionPersonal = null;
 
 if ( isset($_SESSION['informacion_personal']) == false )
@@ -31,20 +50,7 @@ if(isset($_POST['bt_paso1'])){
     $_SESSION["nacionalidad"] = $_POST["nacionalidad"];
 }
 
-$oPersona = new Persona();
 
-$_SESSION['oPersona']=($oPersona);
-
-if(isset($_SESSION['oPersona']) == false){
-	$_SESSION['oPersona']['_usuario']['_nombre'] = '';
-	$_SESSION['oPersona']['_usuario']['_contrasenia'] = '';
-	$_SESSION['oPersona']['_apellido'] = '';
-	$_SESSION['oPersona']['_nombre'] = '';
-	$_SESSION['oPersona']['_tipoDocumento']['_idTipoDocumento'] = '';
-	$_SESSION['oPersona']['_numeroDocumento'] = '';
-	$_SESSION['oPersona']['_sexo']['_idSexo'] = '';
-	$_SESSION['oPersona']['_nacionalidad'] = '';
-}
 
 if(isset($_POST['bt_paso1'])){
 	    $_SESSION["oPersona"] = $_POST["nombre_usuario"];
@@ -58,18 +64,6 @@ if(isset($_POST['bt_paso1'])){
 	}
 
 
-// $nombreUsuario = $_POST["nombre_usuario"];
-// $contrasenia = $_POST["password"];
-// $oUsuario = new Usuario($nombreUsuario,$contrasenia);
-// $_SESSION['oPersona']->setUsuario($oUsuario);
-//var dump para ver que se cargo
-// var_dump($_SESSION['oPersona']->getUsuario());
-
-// $apellidoUsuario = $_POST["apellido"];
-// $_SESSION['oPersona']->setApellido($apellidoUsuario);
-
-// $nombreUsuario = $_POST["nombre"];
-// $_SESSION['oPersona']->setNombre($nombreUsuario);
 
 
 
@@ -187,7 +181,7 @@ $aSexo[] = new Sexo('F','Femenino');
 				<li><label>Tipo de Documento:</label></li>
 				<li>
 					<select name="tipo_documento">
-						$tipoDni= $_SESSION[$aTipoDocumento[0]]-> getDescripcion();
+						$tipoDni= [$aTipoDocumento[0]]-> getDescripcion();
 						
 						
 						$_SESSION[$objeto_TipoLC]-> getDescripcion
