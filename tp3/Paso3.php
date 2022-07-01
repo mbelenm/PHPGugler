@@ -41,7 +41,7 @@ $informacionContacto = $_SESSION['informacion_contacto'];
 			
 			<ul>
 				<li><label>Nombre de Usuario:</label></li>
-				<li><?php echo $informacionPersonal['nombre_usuario']; ?><br></li>
+				<li><?php echo [$_SESSION['persona']-> getNombre()] ?><br></li>
 				
 				<li><label>Contrase&ntilde;a:</label></li>
 				<li><?php echo str_repeat('*', strlen($informacionPersonal['contrasenia'])); ?><br></li>
