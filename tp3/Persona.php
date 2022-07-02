@@ -52,7 +52,7 @@ class Persona{
     //SETTERS
     public function setApellido($apellido)
     {
-        $this->_apellido = $apellido;
+        $this-> _apellido = $apellido;
     }
     public function setNombre($nombre){
         $this->_nombre = $nombre;
@@ -138,24 +138,7 @@ class Persona{
     
 }
 
-// $oPersona = new Persona();
-// $oPersona->setApellido("Perez");
-// $oPersona->setNombre("Juan");
-// $oPersona->setNumeroDocumento(12345678);
-// $oPersona->setTipoDocumento(new TipoDocumento("DNI","Documento Nacional de Identidad"));
-// $oPersona->setSexo(new Sexo("M","Masculino"));
-// $oPersona->setUsuario(new Usuario("jperez","jperez"));
-// $oPersona->setNacionalidad("Argentina");
-// $oPersona->setEmail(new Contacto(2,'sadadsa@gmail.com'));
-// $oPersona->setTelefono(new Contacto(1,"1234567890"));
-// $oPersona->setCelular(new Contacto(1,"1234567890"));
-// $oPersona->setDomicilio("Av. Siempre Viva");
-// $oPersona->setProvincia(new Provincia("Buenos Aires","Buenos Aires"));
-// $oPersona->setLocalidad("La Plata");
 
-
-// $oPersona->__toString();
-// echo $oPersona;
 
 
 ?>

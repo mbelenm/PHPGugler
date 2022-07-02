@@ -51,11 +51,11 @@ $aTipoDocumento = array($oTipoDocumentoDNI,$oTipoDocumentoLC,$oTipoDocumentoLE);
 
 
 
-// foreach ($aTipoDocumento as $oTipoDocumento)
-// {
-// 	echo $oTipoDocumento->getIdTipoDocumento() . ' - ' . $oTipoDocumento->getDescripcion() . '<br>';
-// 	echo '<br>';
-// }
+foreach ($aTipoDocumento as $oTipoDocumento)
+{
+	echo $oTipoDocumento->getIdTipoDocumento() . ' - ' . $oTipoDocumento->getDescripcion() . '<br>';
+	echo '<br>';
+}
 
 // Crear array con 2 objetos Sexo
 
