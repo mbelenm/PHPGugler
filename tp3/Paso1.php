@@ -1,87 +1,45 @@
 <?php 
+
+include_once 'Persona.php';
+include_once 'TipoDocumento.php';
+
 ini_set("display_errors", "on");
 session_start();
+
+
 $_SERVER["DOCUMENT_ROOT"]=dirname(__DIR__);
 
 
-include_once 'Persona.php';
+
 
 $persona = new Persona();
 	
-	if(!isset($_SESSION['persona'])){
-		$_SESSION['persona'] = $persona;
-		$persona->setApellido(' ');
-		$persona->setNombre(' ');
-		$persona->setNumeroDocumento(0);
-		$persona->setTipoDocumento(new TipoDocumento('',' '));
-		$persona->setSexo(new Sexo('',' '));
-		$persona->setUsuario(new Usuario('',' '));
-		$persona->setNacionalidad(' ');
-		$persona->setEmail(new Contacto('',' '));
-		$persona->setTelefono(new Contacto('',' '));
-		$persona->setCelular(new Contacto('',' '));
-		$persona->setDomicilio(' ');
-	}
+ $_SESSION['persona'] = $persona;
 
 
-if(isset($_POST['bt_paso1'])){
-	$persona['apellido'] = $_POST['apellido'];
-	$persona['nombre'] = $_POST['nombre'];
-	$persona['numero_documento'] = $_POST['numero_documento'];
-    $_SESSION["nombreUsuario"] = $_POST["nombreUsuario"];
-    $_SESSION["password"] = $_POST["password"];
-    $_SESSION["apellido"] = $_POST["apellido"];
-    $_SESSION["nombre"] = $_POST["nombre"];
-    $_SESSION["tipoDocumento"] = $_POST["tipoDocumento"];
-    $_SESSION["numeroDocumento"] = $_POST["numeroDocumento"];
-    $_SESSION["sexo"] = $_POST["sexo"];
-    $_SESSION["nacionalidad"] = $_POST["nacionalidad"];
-}
+ $persona->setNombre(' ');
+ $persona->setApellido(' ');
+ $persona->setNumeroDocumento(0);
+ $persona->setSexo(new Sexo('',''));
+ $persona->setNacionalidad(' ');
+ $persona -> setTipoDocumento(new TipoDocumento('',''));
+ $persona->setEmail(new Contacto('',''));
+ $persona->setTelefono(new Contacto('',''));
+ $persona->setCelular(new Contacto('',''));
+$persona ->setContrasenia(new Usuario('',''));
+$persona ->setNombreUsuario(new Usuario('',''));
 
+//crear array con 3 objetos tipoDocumento
 
-
-// $_SESSION['oPersona']->setDescripcion($tipoDocumentoDescripcion);
-
-$oTipoDocumentoDNI = new TipoDocumento(1,'DNI');
-$oTipoDocumentoLC = new TipoDocumento(2,'LC');
-$oTipoDocumentoLE = new TipoDocumento(3,'LE');
-
-$aTipoDocumento = array($oTipoDocumentoDNI,$oTipoDocumentoLC,$oTipoDocumentoLE);
-
-
-
-
-foreach ($aTipoDocumento as $oTipoDocumento)
-{
-	echo $oTipoDocumento->getIdTipoDocumento() . ' - ' . $oTipoDocumento->getDescripcion() . '<br>';
-	echo '<br>';
-}
+$oTipoDNI = new TipoDocumento(1,'DNI');
+$oTipoLC = new TipoDocumento(2,'LC');
+$oTipoLE = new TipoDocumento(3,'LE');
+$aTipoDocumento = array($oTipoDNI,$oTipoLC,$oTipoLE);
 
 // Crear array con 2 objetos Sexo
-
-$aSexo = array();
-$aSexo[] = new Sexo('M','Masculino');
-$aSexo[] = new Sexo('F','Femenino');
-
-// foreach ($aSexo as $oSexo)
-// {
-// 	echo $oSexo->getIdSexo() . ' - ' . $oSexo->getDescripcion() . '<br>';
-// 	echo '<br>';
-// }
-
-// echo $_SESSION['informacion_personal']['tipo_documento'] . '<br>';
-
-//Crear objeto Persona
-// $oPersona = new Persona($_SESSION['informacion_personal']['nombre_usuario'],$_SESSION['informacion_personal']['contrasenia'],$_SESSION['informacion_personal']['apellido'],$_SESSION['informacion_personal']['nombre'],$_SESSION['informacion_personal']['tipo_documento'],$_SESSION['informacion_personal']['numero_documento'],$_SESSION['informacion_personal']['sexo'],$_SESSION['informacion_personal']['nacionalidad']);
-
-
-
-// $oPersona->setUsuario($_SESSION[Usuario][]='maycol22',$_SESSION['informacion_personal']['contrasenia']='Espectriñ222o9');
-// echo $oPersona->getUsuario() . '<br>';
-
-
-//Ver datos de la persona
-// echo $oPersona->getNombreUsuario() . '<br>';
+$oMasculino = new Sexo('M','Masculino');
+$oFemenino = new Sexo('F','Femenino');
+$aSexo = array($oMasculino,$oFemenino);
 
 ?>
 <!DOCTYPE html>
@@ -102,40 +60,36 @@ $aSexo[] = new Sexo('F','Femenino');
 			<legend>Informaci&oacute;n Personal:</legend>
 			
 			<ul>
+			<li><label>Nombre:</label></li>
+				<li><input type="text" name="nombre" value="<?php echo $persona-> getNombre(); ?>"></li>
+				<li><label>Apellido:</label></li>
+				<li><input type="text" name="apellido" value="<?php echo $persona -> getApellido(); ?>"></li>
 				<li><label>Nombre de Usuario:</label></li>
-				<li><input type="text" name="nombre_usuario" value="<?php echo $informacionPersonal ['nombreUsuario']  ?>"></li>
+				<li><input type="text" name="nombre_usuario" value="<?php echo $persona-> getUsuario() -> getNombre() ?>"></li>
 				
 				<li><label>Contrase&ntilde;a:</label></li>
-				<li><input type="password" name="contrasenia" value="<?php echo $persona ['contrasenia']; ?>"></li>
-				
-				<li><label>Apellido:</label></li>
-				<li><input type="text" name="apellido" value="<?php echo $persona ['apellido']; ?>"></li>
-				
-				<li><label>Nombre:</label></li>
-				<li><input type="text" name="nombre" value="<?php echo $persona ['nombre']; ?>"></li>
-				
+				<li><input type="password" name="contrasenia" value="<?php echo $persona ->getUsuario() -> getContrasenia()?>"></li>
 				<li><label>Tipo de Documento:</label></li>
 				<li>
-					<select name="tipo_documento">
-
-						<option value="DNI" <?php echo  $_SESSION ['persona'][ $oTipoDocumentoDNI]-> getDescripcion()? 'selected="selected"' : '' ; ?>> DNI</option>
-						<option value="LC" <?php echo$_SESSION ['persona'] [$oTioDocumentoLC]-> getDescripcion() ? 'selected="selected"' : '' ; ?>>LC</option>
-						<option value="LE" <?php echo $_SESSION ['persona'] [$oTipoDocumentoLE]-> getDescripcion()? 'selected="selected"' : '' ; ?>>LE</option>
+					<select  name="tipo_documento">
+						<option value="<?php echo ($aTipoDocumento[0]->getDescripcion()) ; ?>"  >DNI</option>
+						<option value="<?php echo ($aTipoDocumento[1]->getDescripcion()) ; ?>"  >LC</option>
+						<option value="<?php echo ($aTipoDocumento[2]->getDescripcion()) ; ?>"  >LE</option>
 					</select>
 				</li>
-				
 				<li><label>N&uacute;mero de Documento:</label></li>
-				<li><input type="text" name="numero_documento" value="<?php echo $informacionPersonal['numero_documento']; ?>"></li>
-				
+				<li><input type="text" name="numero_documento" value="<?php echo $persona -> getNumeroDocumento() ?>"></li>
+					
 				<li><label>Sexo:</label></li>
 				<li>
-					<label class="radio"><input type="radio" name="sexo" value="M" <?php echo ( $aSexo[0] ) ? 'checked="checked"' : '' ; ?>> Masculino</label>
+					<label  class="radio"><input type="radio" name="sexo" value="<?php echo $aSexo[0]->getIdSexo()  ; ?>"  > Masculino</label>
 
-					<label class="radio"><input type="radio" name="sexo" value="F" <?php echo ( $aSexo[1]) ? 'checked="checked"' : '' ; ?>> Femenino</label>
+					<label  class="radio"><input type="radio" name="sexo" value="<?php echo $aSexo[1]->getIdSexo() ; ?>"  > Femenino</label>
 				</li>
 				
+
 				<li><label>Nacionalidad:</label></li>
-				<li><input type="text" name="nacionalidad" value="<?php echo $informacionPersonal['nacionalidad']; ?>"></li>
+				<li><input type="text" name="nacionalidad" value="<?php echo $persona ->getNacionalidad() ?>"></li>
 			</ul>
 			
 			<div class="buttons">
@@ -143,8 +97,7 @@ $aSexo[] = new Sexo('F','Femenino');
 			</div>
 		</fieldset>
 	</form>
-	
-	<div class="push"></div>
+
 	
 </div>
 
@@ -152,4 +105,4 @@ $aSexo[] = new Sexo('F','Femenino');
 </body>
 </html>
 
-<!-- /* /opt/lampp/htdocs/PHPGugler */ -->
+<!-- /* /opt/lampp/htdocs/PHPGugler */ --

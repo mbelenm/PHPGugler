@@ -11,23 +11,40 @@ class Usuario
         $this->_contrasenia = $contrasenia;
     }
 
-    //Metodo para validar contraseña con al menos 6 caracteres y un numero y una letra
-    public function validarContrasenia($contrasenia)
+    
+    public function validarContrasenia()
     {
-        if(!preg_match("/^[a-zA-ZñÑ0-9]{6,25}$/",$contrasenia)){
-            return false;
-        }else{
+        if(preg_match("/^[a-zA-ZñÑ0-9]{6,25}$/", $this->_contrasenia)){
             return true;
+        }else{
+            return false;
         }
     }
 
+    //setter
+    public function setNombre($nombre)
+    {
+        $this->_nombre = $nombre;
+    }
 
-    public function  getContraseniaEnmascarada($contrasenia)
+    public function setContrasenia($contrasenia)
     {
         $this->_contrasenia = $contrasenia;
-        $contrasenia = str_repeat("*", strlen($contrasenia));
+    }
+
+
+    public function  getContraseniaEnmascarada()
+    {
+    
+        $contrasenia =  preg_replace(array('/./'), '*', $this->_contrasenia);
         return $contrasenia;
     }
+
+
+    //
+
+
+
 
     public function getNombre()
     {

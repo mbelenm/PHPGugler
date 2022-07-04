@@ -12,13 +12,19 @@ class TipoDocumento
     }
     
     public function getIdTipoDocumento()
-    {
+    {   
         return $this->_idTipoDocumento;
+    
+        
+
     }
 
     public function getDescripcion()
     {
+
         return $this->_descripcion;
+
+
     }
     
     public function setIdTipoDocumento($idTipoDocumento)

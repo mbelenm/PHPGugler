@@ -23,51 +23,53 @@ class Contacto
     {
         return $this->_valor;
     }
-    //Validar que contenga al menos 10 dígitos y separado por guiones
-    public function validar($tipo,$valor)
+   
+    public function _validarTelefono($valor)
     {
-        if ($tipo != self::TIPO_TELEFONO && $tipo != self::TIPO_EMAIL) {
+        $valor = preg_replace('/[^0-9]+/', '', $valor);
+        if (strlen($valor) == 10) {
+            return true;
+        } else {
             return false;
-        }else{
-            if($tipo == self::TIPO_TELEFONO){
-                //Validar que contenga al menos 10 dígitos y separado por guiones
-                if(!preg_match("/^[0-9-]{10}$/", $valor)){
-                    return false;
-                }else{
-                    return true;
-                }                
-
-            }elseif($tipo == self::TIPO_EMAIL){
-                if(!filter_var($valor, FILTER_VALIDATE_EMAIL)){
-                    return false;
-                }else{
-                    return true;
-                };
-            }
         }
     }
-    //Metodos para visulizar constantes
-    public function verConstanteTelefono(){
-        return self::TIPO_TELEFONO;
-    }
-    public function verConstanteEmail(){
-        return self::TIPO_EMAIL;
+
+
+
+
+
+
+    public function _validarEmail($valor)
+    {
+        if (filter_var($valor, FILTER_VALIDATE_EMAIL)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    //Metodo toString
-    public function __toString()
-    {
-        return $this->_tipo . " - " . $this->_valor;
-    }
+	public function validar()
+	{
+		switch ($this->_tipo)
+		{
+			case self::TIPO_TELEFONO:
+				return $this->_validarTelefono($this->_valor);
+				break;
+
+			case self::TIPO_EMAIL:
+				return $this->_validarEmail($this->_valor);
+				break;
+
+			default:
+				return false;
+		}
+	}
 }
 
-// $oContacto1 = new Contacto(2, "maycolsantia@gmail.com");
-// $oContacto2 = new Contacto(1, "3442587475");
 
-// // echo $oContacto1->verConstanteEmail();
-// // echo $oContacto2->verConstanteTelefono();
 
-// echo $oContacto1->validar(2,"maycolsan@tiagmail.com");
+
+
 
 
 ?>

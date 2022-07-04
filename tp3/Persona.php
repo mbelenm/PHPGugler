@@ -66,6 +66,16 @@ class Persona{
     public function setSexo(Sexo $oSexo){
         $this->_sexo = $oSexo;
     }
+
+
+    public function setContrasenia(Usuario $contrasenia){
+        $this->_usuario->setContrasenia($contrasenia);
+    }
+
+    public function setNombreUsuario (Usuario $nombreUsuario) {
+        $this->_usuario-> setNombre($nombreUsuario);
+    }
+
     public function setUsuario(Usuario $oUsuario){
         $this->_usuario = $oUsuario;
     }
@@ -100,27 +110,51 @@ class Persona{
     public function getNumeroDocumento(){
         return $this->_numeroDocumento;
     }
-    public function getTipoDocumento(){
-        return $this->_tipoDocumento;
-    }
-    public function getSexo(){
-        return $this->_sexo;
-    }
+    /**
+    * @return TipoDocumento
+    */
+   public function getTipoDocumento()
+   {
+       return $this->_tipoDocumento;
+   }
+	/**
+	 * @return Sexo
+	 */
+	public function getSexo()
+	{
+		return $this->_sexo;
+	}
+
+    
     public function getUsuario(){
         return $this->_usuario;
     }
     public function getNacionalidad(){
         return $this->_nacionalidad;
     }
+
+    public function getContrasenia (){
+        return $this->_usuario->getContrasenia();
+    }
+
+    public function getNombreUsuario (){
+        return $this->_usuario->getNombre();
+    }
+
     public function getEmail(){
         return $this->_email;
     }
     public function getTelefono(){
         return $this->_telefono;
     }
-    public function getCelular(){
-        return $this->_celular;
-    }
+  
+	/**
+	 * @return Contacto
+	 */
+	public function getCelular()
+	{
+		return $this->_celular;
+	}
     public function getDomicilio(){
         return $this->_domicilio;
     }
