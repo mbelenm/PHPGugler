@@ -26,8 +26,19 @@ class Sexo
     {
         return $this->_idSexo . " - " . $this->_descripcion;
     }
+
+    //array  dos objetos de la clase Sexo
+    public static function getSexos()
+    {
+        return array(
+            new Sexo('M', 'Masculino'),
+            new Sexo('F', 'Femenino'),
+        );
+
+
+
 }
 
 
-
+}
 ?>

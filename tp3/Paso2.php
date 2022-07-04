@@ -1,6 +1,7 @@
 <?php
 ini_set("display_errors", "on");
 require_once 'Persona.php';
+include_once 'arrays.php';
 
 session_start();
 
@@ -18,7 +19,7 @@ if (isset($_POST['bt_paso1']) == true) {
 	$documento = (isset($_POST['numero_documento']) == true) ? $_POST['numero_documento'] : '';
 	$eleccionSexo = (isset($_POST['sexo']) == true) ? $_POST['sexo'] : '';
 	$nacionalidad = (isset($_POST['nacionalidad']) == true) ? $_POST['nacionalidad'] : '';
-	$localidad = (isset($_POST['localidad']) == true) ? $_POST['localidad'] : '';
+	
 
 	$oUsuario = new Usuario($usuario, $contrasenia);
 	$_SESSION['persona']->setUsuario( $oUsuario);
@@ -29,28 +30,31 @@ if (isset($_POST['bt_paso1']) == true) {
 		$persona->setUsuario($oUsuario);
 	}
 
-	$oMasculino = new Sexo('M', 'Masculino');
-	$oFemenino = new Sexo('F', 'Femenino');
-	$aSexo = array($oMasculino, $oFemenino);
+	
+	foreach ( $aSexo as $oSexo )
+	{
+		if ( $eleccionSexo == $oSexo->getIdSexo() )
+		{
+			$persona->setSexo($oSexo);
+			$validarSexo = true;
+		}
+	}
 
 	$oTipoDNI = new TipoDocumento(1, 'DNI');
 	$oTipoLC = new TipoDocumento(2, 'LC');
 	$oTipoLE = new TipoDocumento(3, 'LE');
 	$aTipoDocumento = array($oTipoDNI, $oTipoLC, $oTipoLE);
 
-	if ($eleccionTipoDocumento == 'DNI') {
-		$_SESSION['persona']->setTipoDocumento($oTipoDNI);
-	} elseif ($eleccionTipoDocumento == 'LC') {
-		$_SESSION['persona']->setTipoDocumento($oTipoLC);
-	} elseif ($eleccionTipoDocumento == 'LE') {
-		$_SESSION['persona']->setTipoDocumento($oTipoLE);
+	foreach ( $aTipoDocumento as $oTipoDocumento )
+	{
+		if ( $eleccionTipoDocumento == $oTipoDocumento->getIdTipoDocumento() )
+		{
+			$persona->setTipoDocumento($oTipoDocumento);
+			$validarTipoDocumento = true;
+		}
 	}
 
-	if ($eleccionSexo == 'M') {
-		$_SESSION['persona']->setSexo($oMasculino);
-	} elseif ($eleccionSexo == 'F') {
-		$_SESSION['persona']->setSexo($oFemenino);
-	}
+$persona -> setLocalidad('');
 	$persona->setApellido($apellido);
 	$persona->setNombre($nombre);
 	$persona->setNumeroDocumento($documento);
@@ -104,26 +108,16 @@ $aProvincias = array($oEntreRios, $oSantaFe, $oCordoba, $oBuenosAires, $oCatamar
 
 					<li><label>Domicilio:</label></li>
 					<li><input type="text" name="domicilio" value="<?php $persona->getDomicilio() ?>"></li>
-
 					<li><label>Provincia:</label></li>
 					<li>
 						<select name="provincia">
-							<option value="<?php echo ($aProvincias[0]->getDescripcion()); ?> ">Entre Rios</option>
-							<option value="<?php echo ($aProvincias[1]->getDescripcion()); ?>">Santa Fe</option>
-							<option value="<?php echo ($aProvincias[2]->getDescripcion()); ?>">Cordoba</option>
-							<option value="<?php echo ($aProvincias[3]->getDescripcion()); ?>">Buenos Aires</option>
-							<option value="<?php echo ($aProvincias[4]->getDescripcion()); ?>">Catamarca</option>
-							<option value="<?php echo ($aProvincias[5]->getDescripcion()); ?>">Corrientes</option>
+						<?php foreach ( $aProvincia as $oProvincia ) { ?>
+							<option value="<?= $oProvincia->getIdProvincia() ?>" <?= ( $persona->getProvincia()->getIdProvincia() == $oProvincia->getIdProvincia() ) ? 'selected="selected"' : ''  ?>><?= $oProvincia->getDescripcion() ?></option>
+							<?php } ?>
 						</select>
-						<li><label>Localidad:</label></li>
-				<li><input type="text" name="localidad" value="<?php echo $persona->getLocalidad(); ?>"></li>
 					</li>
-					<!-- <li><label>Localidad:</label></li>
-					<li><input type="text" name="localidad" value="
-				
-					">
-					</li> -->
-
+					<li> <label >Localidad: </label></li>
+					<li><input type="text" name="localidad" value="<?php $persona->getLocalidad() ?>"></li>
 				</ul>
 
 				<div class="buttons">

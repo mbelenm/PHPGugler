@@ -1,6 +1,7 @@
 <?php
 ini_set("display_errors", "on");
 include_once 'Persona.php';
+include_once 'arrays.php';
 session_start();
 
 $persona = (isset($_SESSION['Persona']) == false) ? new Persona() : $_SESSION['Persona'];
@@ -14,9 +15,7 @@ if (isset($_POST['bt_paso2']) == true) {
 	$celular = (isset($_POST['celular']) == true) ? $_POST['celular'] : '';
 	$domicilio = (isset($_POST['domicilio']) == true) ? $_POST['domicilio'] : '';
 	$eleccionProvincia = ( isset($_POST['provincia']) == true ) ? $_POST['provincia'] : '';
-
 	$localidad = (isset($_POST['localidad']) == true) ? $_POST['localidad'] : '';
-
 
 
 
@@ -38,6 +37,31 @@ if (isset($_POST['bt_paso2']) == true) {
 		$validarCelular = true;
 		$persona->setCelular($oCelular);
 	}
+
+	if($eleccionProvincia=='Entre Rios'){
+		$_SESSION['persona']->setProvincia($oEntreRios);
+	}elseif ($eleccionProvincia == 'Santa Fe') {
+		$_SESSION['persona']->setProvincia($oSantaFe);
+	}elseif($eleccionProvincia=='Cordoba'){
+		$_SESSION['persona']->setProvincia($oCordoba);
+	}elseif($eleccionProvincia=='Buenos Aires'){
+		$_SESSION['persona']->setProvincia($oBuenosAires);
+	}elseif($eleccionProvincia=='Catamarca'){
+		$_SESSION['persona']->setProvincia($oCatamarca);
+	}elseif($eleccionProvincia=='Corrientes'){
+		$_SESSION['persona']->setProvincia($oCorrientes);
+	}
+
+	foreach ( $aProvincia as $oProvincia )
+	{
+		if ( $oProvincia->getIdProvincia() == $eleccionProvincia )
+		{
+			$validarProvincia = true;
+			$persona->setProvincia($oProvincia);
+		}
+	}
+
+
 	// $persona ->setProvincia($provincia);
 	$persona->setDomicilio($domicilio);
 	$persona->setLocalidad($localidad);
@@ -45,31 +69,14 @@ if (isset($_POST['bt_paso2']) == true) {
 }
  else
 {
- 	$validarEmail = true;
-;
+ $validarCelular = true;
+ $validarTelefono = true;
+	$validarEmail = true;
+
+
 }
 
-$oEntreRios = new Provincia(1,'Entre Rios');
-$oSantaFe = new Provincia(2,'Santa Fe');
-$oCordoba = new Provincia(3,'Cordoba');
-$oBuenosAires = new Provincia(4,'Buenos Aires');
-$oCatamarca = new Provincia(5,'Catamarca');
-$oCorrientes = new Provincia(6,'Corrientes');
-$aProvincias = array($oEntreRios,$oSantaFe,$oCordoba,$oBuenosAires,$oCatamarca,$oCorrientes);
 
-if($eleccionProvincia=='Entre Rios'){
-	$_SESSION['persona']->setProvincia($oEntreRios);
-}elseif ($eleccionProvincia == 'Santa Fe') {
-	$_SESSION['persona']->setProvincia($oSantaFe);
-}elseif($eleccionProvincia=='Cordoba'){
-	$_SESSION['persona']->setProvincia($oCordoba);
-}elseif($eleccionProvincia=='Buenos Aires'){
-	$_SESSION['persona']->setProvincia($oBuenosAires);
-}elseif($eleccionProvincia=='Catamarca'){
-	$_SESSION['persona']->setProvincia($oCatamarca);
-}elseif($eleccionProvincia=='Corrientes'){
-	$_SESSION['persona']->setProvincia($oCorrientes);
-}
 
 
 ?>

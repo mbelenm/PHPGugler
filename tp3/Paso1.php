@@ -1,7 +1,7 @@
 <?php 
 
 include_once 'Persona.php';
-include_once 'TipoDocumento.php';
+include_once 'arrays.php';
 
 ini_set("display_errors", "on");
 session_start();
@@ -29,17 +29,7 @@ $persona = new Persona();
 $persona ->setContrasenia(new Usuario('',''));
 $persona ->setNombreUsuario(new Usuario('',''));
 
-//crear array con 3 objetos tipoDocumento
 
-$oTipoDNI = new TipoDocumento(1,'DNI');
-$oTipoLC = new TipoDocumento(2,'LC');
-$oTipoLE = new TipoDocumento(3,'LE');
-$aTipoDocumento = array($oTipoDNI,$oTipoLC,$oTipoLE);
-
-// Crear array con 2 objetos Sexo
-$oMasculino = new Sexo('M','Masculino');
-$oFemenino = new Sexo('F','Femenino');
-$aSexo = array($oMasculino,$oFemenino);
 
 ?>
 <!DOCTYPE html>
@@ -71,20 +61,22 @@ $aSexo = array($oMasculino,$oFemenino);
 				<li><input type="password" name="contrasenia" value="<?php echo $persona ->getUsuario() -> getContrasenia()?>"></li>
 				<li><label>Tipo de Documento:</label></li>
 				<li>
-					<select  name="tipo_documento">
-						<option value="<?php echo ($aTipoDocumento[0]->getDescripcion()) ; ?>"  >DNI</option>
-						<option value="<?php echo ($aTipoDocumento[1]->getDescripcion()) ; ?>"  >LC</option>
-						<option value="<?php echo ($aTipoDocumento[2]->getDescripcion()) ; ?>"  >LE</option>
+				<select name="tipo_documento">
+						<?php foreach ( $aTipoDocumento as $oTipoDocumento ) { ?>
+						<option value="<?= $oTipoDocumento->getIdTipoDocumento() ?>" <?= ( $persona->getTipoDocumento()->getIdTipoDocumento() == $oTipoDocumento->getIdTipoDocumento() ) ? 'selected="selected"' : ''  ?>><?= $oTipoDocumento->getDescripcion() ?></option>
+						<?php } ?>
 					</select>
 				</li>
 				<li><label>N&uacute;mero de Documento:</label></li>
 				<li><input type="text" name="numero_documento" value="<?php echo $persona -> getNumeroDocumento() ?>"></li>
 					
 				<li><label>Sexo:</label></li>
+				
 				<li>
-					<label  class="radio"><input type="radio" name="sexo" value="<?php echo $aSexo[0]->getIdSexo()  ; ?>"  > Masculino</label>
+					<?php foreach ( $aSexo as $oSexo ) { ?>
+					<label class="radio"><input type="radio" name="sexo" value="<?= $oSexo->getIdSexo() ?>" <?= ( $persona->getSexo()->getIdSexo() == $oSexo->getIdSexo() ) ? 'checked="checked"' : ''  ?>> <?= $oSexo->getDescripcion() ?></label>
+					<?php } ?>
 
-					<label  class="radio"><input type="radio" name="sexo" value="<?php echo $aSexo[1]->getIdSexo() ; ?>"  > Femenino</label>
 				</li>
 				
 

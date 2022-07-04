@@ -85,11 +85,11 @@ class Persona{
     public function setEmail(Contacto $oEmail){
         $this->_email = $oEmail;
     }
-    public function setTelefono(Contacto $oTelefono){
-        $this->_telefono = $oTelefono;
+    public function setTelefono(Contacto $telefono){
+        $this->_telefono = $telefono;
     }
-    public function setCelular(Contacto $oCelular){
-        $this->_celular = $oCelular;
+    public function setCelular(Contacto $celular){
+        $this->_celular = $celular;
     }
     public function setDomicilio($domicilio){
         $this->_domicilio = $domicilio;
@@ -147,10 +147,7 @@ class Persona{
     public function getTelefono(){
         return $this->_telefono;
     }
-  
-	/**
-	 * @return Contacto
-	 */
+ 
 	public function getCelular()
 	{
 		return $this->_celular;
